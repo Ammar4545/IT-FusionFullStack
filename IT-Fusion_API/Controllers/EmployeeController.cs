@@ -49,7 +49,18 @@ namespace IT_Fusion_API.Controllers
             return NoContent();
         }
 
-        
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var existing = _employeeService.GetById(id);
+            if (existing == null) return NotFound();
+
+            _employeeService.Delete(id);
+            return NoContent();
+        }
+
+
+
 
     }
 }
