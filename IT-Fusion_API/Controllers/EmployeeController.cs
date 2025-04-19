@@ -1,7 +1,6 @@
 ﻿using IT_Fusion_API.Models;
 using IT_Fusion_API.Service.IService;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace IT_Fusion_API.Controllers
 {
@@ -17,7 +16,11 @@ namespace IT_Fusion_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll() => Ok(_employeeService.GetAll());
+        public IActionResult GetAll()
+        {
+            var emps = _employeeService.GetAll();
+            return Ok(emps);
+        }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)

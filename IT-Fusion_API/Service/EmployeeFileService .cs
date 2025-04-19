@@ -7,7 +7,7 @@ namespace IT_Fusion_API.Service
     public class EmployeeFileService : IEmployeeFileService
     {
         private static readonly string _jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "DataStorage\\Employee.json");
-        
+
         private List<Employee> ReadFromFile()
         {
             if (!File.Exists(_jsonFilePath))
@@ -24,13 +24,20 @@ namespace IT_Fusion_API.Service
         }
         public List<Employee> GetAll() => ReadFromFile();
 
-        public Employee GetById(int id) => ReadFromFile().FirstOrDefault(e => e.Id == id);
+        public Employee GetById(int id)
+        {
+            return ReadFromFile().FirstOrDefault(e => e.Id == id);
+        }
 
         public void Add(Employee employee)
         {
             var employees = ReadFromFile();
 
-            // Ensure the provided Id is not already used
+            if (employee.Id == 0)
+            {
+                employee.Id = employees.Any() ? employees.Max(e => e.Id) + 1 : 1;
+            }
+
             if (employees.Any(e => e.Id == employee.Id))
                 throw new Exception($"Employee with Id {employee.Id} already exists.");
 
