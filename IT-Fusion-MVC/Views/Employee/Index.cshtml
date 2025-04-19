@@ -1,0 +1,44 @@
+﻿@using IT_Fusion_MVC.Models;
+@model IEnumerable<EmployeeDto>
+
+
+    <div class="row m-4 text-end">
+        <div class="col-12">
+        <a type="submit" class="btn btn-primary" asp-action="CreateEmployee">Create Employee</a>
+        </div>
+    </div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-active">
+            <th>Name</th>
+            <th>Join Date</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var n in Model)
+        {
+            <tr>
+                <td>@n.Name</td>
+                <td>@n.JoinDate</td>
+                <td>@n.Gender</td>
+                <td>@n.Phone</td>
+               
+                
+                <td>
+                     <a type="submit" asp-action="DeleteEmployee" asp-route-employeeId="@n.Id" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a type="submit" asp-action="UpdateEmployee" asp-route-employeeId="@n.Id" class="btn btn-primary">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

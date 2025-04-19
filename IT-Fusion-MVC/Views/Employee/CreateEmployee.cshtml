@@ -1,0 +1,38 @@
+﻿@using IT_Fusion_MVC.Models;
+@model EmployeeDto
+<h1>Add Employee</h1>
+
+
+<form method="post">
+    <div class="m-1">
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="JoinDate"></label>
+        <input type="date" asp-for="JoinDate" class="form-control" />
+        <span asp-validation-for="JoinDate" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Gender"></label>
+        <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+            <option value="">-- Select Gender --</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="m-1">
+        <label asp-for="Phone"></label>
+        <input type="text" asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="m-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+
+@section Scripts
+{
+        <Partial name="_ValidationScriptsPartial" />
+}

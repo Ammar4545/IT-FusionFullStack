@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35514.174 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT-Fusion_API", "IT-Fusion_API\IT-Fusion_API.csproj", "{DB887BDE-C09E-43FE-B72D-FCC1B011229C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT-Fusion-MVC", "IT-Fusion-MVC\IT-Fusion-MVC.csproj", "{7145C0EA-933A-4AA7-AB39-BA10BBF1A2AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DB887BDE-C09E-43FE-B72D-FCC1B011229C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB887BDE-C09E-43FE-B72D-FCC1B011229C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB887BDE-C09E-43FE-B72D-FCC1B011229C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7145C0EA-933A-4AA7-AB39-BA10BBF1A2AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7145C0EA-933A-4AA7-AB39-BA10BBF1A2AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7145C0EA-933A-4AA7-AB39-BA10BBF1A2AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7145C0EA-933A-4AA7-AB39-BA10BBF1A2AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
