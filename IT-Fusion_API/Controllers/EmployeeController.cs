@@ -26,7 +26,20 @@ namespace IT_Fusion_API.Controllers
             return employee != null ? Ok(employee) : NotFound();
         }
 
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            var existing = _employeeService.GetById(employee.Id);
+            if (existing != null)
+                return Conflict($"Employee with Id {employee.Id} already exist");
+
+            _employeeService.Add(employee);
+            return CreatedAtAction(nameof(Get), new { id = employee.Id }, employee);
+        }
+
         
+
+
 
     }
 }
