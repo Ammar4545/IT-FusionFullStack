@@ -37,9 +37,19 @@ namespace IT_Fusion_API.Controllers
             return CreatedAtAction(nameof(Get), new { id = employee.Id }, employee);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Employee employee)
+        {
+            if (id != employee.Id) return BadRequest("Add matched Ids");
+
+            var existing = _employeeService.GetById(id);
+            if (existing == null) return NotFound();
+
+            _employeeService.Update(id, employee);
+            return NoContent();
+        }
+
         
-
-
 
     }
 }
