@@ -19,6 +19,13 @@ namespace IT_Fusion_API.Controllers
         [HttpGet]
         public IActionResult GetAll() => Ok(_employeeService.GetAll());
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var employee = _employeeService.GetById(id);
+            return employee != null ? Ok(employee) : NotFound();
+        }
+
         
 
     }
