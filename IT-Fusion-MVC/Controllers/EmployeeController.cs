@@ -1,13 +1,11 @@
-﻿
-using ADVA_FrontEnd.Services.IServices;
-using AutoMapper;
+﻿using AutoMapper;
 using IT_Fusion_MVC.Dtos;
 using IT_Fusion_MVC.Models;
+using IT_Fusion_MVC.Services.IServices;
 using IT_Fusion_MVC.Utilities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ADVA_FrontEnd.Controllers
+namespace IT_Fusion_MVC.Controllers
 {
     public class EmployeeController : Controller
     {
@@ -22,7 +20,7 @@ namespace ADVA_FrontEnd.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Employee> employees = await _employeeService.GetAsync(url: $"{SD.ITFusionBaseUrl}/Employees");
+            IEnumerable<Employee> employees = await _employeeService.GetAsync(url: $"{Constants.ITFusionBaseUrl}/Employees");
 
             List<EmployeeDto> employeesDtos = _mapper.Map<List<EmployeeDto>>(employees);
 
@@ -45,7 +43,7 @@ namespace ADVA_FrontEnd.Controllers
             }
 
             Employee employee = _mapper.Map<Employee>(employeeDto);
-            await _employeeService.PostAsync(url: $"{SD.ITFusionBaseUrl}/employees", data: employee);
+            await _employeeService.PostAsync(url: $"{Constants.ITFusionBaseUrl}/employees", data: employee);
 
             return RedirectToAction("Index");
         }
@@ -53,7 +51,7 @@ namespace ADVA_FrontEnd.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateEmployee(int employeeId)
         {
-            Employee employee = await _employeeService.GetByIdAsync(url: $"{SD.ITFusionBaseUrl}/employees/{employeeId}");
+            Employee employee = await _employeeService.GetByIdAsync(url: $"{Constants.ITFusionBaseUrl}/employees/{employeeId}");
 
             EmployeeUpdateDto employeeUpdateDt = _mapper.Map<EmployeeUpdateDto>(employee);
             return View(employeeUpdateDt);
@@ -68,13 +66,13 @@ namespace ADVA_FrontEnd.Controllers
             }
 
             Employee employee = _mapper.Map<Employee>(employeeUpdateDto);
-            await _employeeService.UpdateAsync(url: $"{SD.ITFusionBaseUrl}/employees/{employeeId}", data: employee);
+            await _employeeService.UpdateAsync(url: $"{Constants.ITFusionBaseUrl}/employees/{employeeId}", data: employee);
 
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> DeleteEmployee(int employeeId)
         {
-            await _employeeService.Delete(url: $"{SD.ITFusionBaseUrl}/employees/{employeeId}");
+            await _employeeService.Delete(url: $"{Constants.ITFusionBaseUrl}/employees/{employeeId}");
             return RedirectToAction(nameof(Index));
         }
     }

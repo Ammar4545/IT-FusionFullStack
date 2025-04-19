@@ -1,32 +1,20 @@
 ﻿using IT_Fusion_API.Models;
 using IT_Fusion_API.Service.IService;
+using IT_Fusion_API.Utilities;
 using System.Text.Json;
 
 namespace IT_Fusion_API.Service
 {
     public class EmployeeFileService : IEmployeeFileService
     {
-        private static readonly string _jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "DataStorage\\Employee.json");
+        private static readonly string _jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), Constants.EmployeesDataSourse);
 
-        private List<Employee> ReadFromFile()
-        {
-            if (!File.Exists(_jsonFilePath))
-                return new List<Employee>();
-
-            var json = File.ReadAllText(_jsonFilePath);
-            return JsonSerializer.Deserialize<List<Employee>>(json) ?? new List<Employee>();
-        }
-
-        private void WriteToFile(List<Employee> employees)
-        {
-            var json = JsonSerializer.Serialize(employees, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(_jsonFilePath, json);
-        }
         public List<Employee> GetAll() => ReadFromFile();
 
-        public Employee GetById(int id)
+        public Employee? GetById(int id)
         {
-            return ReadFromFile().FirstOrDefault(e => e.Id == id);
+            var emp = ReadFromFile().FirstOrDefault(e => e.Id == id);
+            return emp ?? null;
         }
 
         public void Add(Employee employee)
@@ -67,6 +55,20 @@ namespace IT_Fusion_API.Service
                 employees.Remove(employee);
                 WriteToFile(employees);
             }
+        }
+        private List<Employee> ReadFromFile()
+        {
+            if (!File.Exists(_jsonFilePath))
+                return new List<Employee>();
+
+            var json = File.ReadAllText(_jsonFilePath);
+            return JsonSerializer.Deserialize<List<Employee>>(json) ?? new List<Employee>();
+        }
+
+        private void WriteToFile(List<Employee> employees)
+        {
+            var json = JsonSerializer.Serialize(employees, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(_jsonFilePath, json);
         }
 
     }

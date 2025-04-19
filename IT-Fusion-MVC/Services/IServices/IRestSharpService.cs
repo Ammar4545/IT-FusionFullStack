@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace ADVA_FrontEnd.Services.IServices
+namespace IT_Fusion_MVC.Services.IServices
 {
     public interface IRestSharpService<T> where T : class
     {

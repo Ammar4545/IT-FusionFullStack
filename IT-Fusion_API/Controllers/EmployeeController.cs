@@ -34,7 +34,9 @@ namespace IT_Fusion_API.Controllers
         {
             var existing = _employeeService.GetById(employee.Id);
             if (existing != null)
+            {
                 return Conflict($"Employee with Id {employee.Id} already exist");
+            }
 
             _employeeService.Add(employee);
             return CreatedAtAction(nameof(Get), new { id = employee.Id }, employee);
@@ -43,10 +45,16 @@ namespace IT_Fusion_API.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, Employee employee)
         {
-            if (id != employee.Id) return BadRequest("Add matched Ids");
+            if (id != employee.Id) 
+            {
+                return BadRequest("Add matched Ids");
+            }
 
             var existing = _employeeService.GetById(id);
-            if (existing == null) return NotFound();
+            if (existing == null) 
+            {
+                return NotFound();
+            }
 
             _employeeService.Update(id, employee);
             return NoContent();
@@ -56,7 +64,10 @@ namespace IT_Fusion_API.Controllers
         public IActionResult Delete(int id)
         {
             var existing = _employeeService.GetById(id);
-            if (existing == null) return NotFound();
+            if (existing == null) 
+            {
+                return NotFound();
+            }
 
             _employeeService.Delete(id);
             return NoContent();

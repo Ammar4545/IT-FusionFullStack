@@ -1,6 +1,5 @@
-using ADVA_FrontEnd.Services.IServices;
-using ADVA_FrontEnd.Services;
-using System.Text.Json.Serialization;
+using IT_Fusion_MVC.Services;
+using IT_Fusion_MVC.Services.IServices;
 using IT_Fusion_MVC.Utilities;
 
 namespace IT_Fusion_MVC
@@ -15,13 +14,9 @@ namespace IT_Fusion_MVC
 
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
-            SD.ITFusionBaseUrl = builder.Configuration["ServiceUrls:ITFusion_BaseUrl"]!;
+            Constants.ITFusionBaseUrl = builder.Configuration["ServiceUrls:ITFusion_BaseUrl"]!;
 
             builder.Services.AddControllers();
-            //.AddJsonOptions(options =>
-            //{
-            //    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            //});
 
             builder.Services.AddAutoMapper(typeof(MappingConfig));
 
@@ -43,7 +38,7 @@ namespace IT_Fusion_MVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Employee}/{action=Index}");
 
             app.Run();
         }

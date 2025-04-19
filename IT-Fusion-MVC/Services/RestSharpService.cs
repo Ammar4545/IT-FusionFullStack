@@ -1,7 +1,7 @@
-﻿using ADVA_FrontEnd.Services.IServices;
+﻿using IT_Fusion_MVC.Services.IServices;
 using RestSharp;
 
-namespace ADVA_FrontEnd.Services
+namespace IT_Fusion_MVC.Services
 {
     public class RestSharpService<T> : IRestSharpService<T> where T : class
     {
@@ -17,8 +17,7 @@ namespace ADVA_FrontEnd.Services
         {
             var request = new RestRequest(url, Method.Delete);
 
-            // var response = await _restClient.DeleteAsync(request);
-            var response = await _restClient.ExecuteAsync(request); // "ExecuteAsync" handling error default if occured
+            var response = await _restClient.ExecuteAsync(request);
 
             if (!response.IsSuccessful)
             {

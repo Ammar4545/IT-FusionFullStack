@@ -1,7 +1,7 @@
-﻿using ADVA_FrontEnd.Services.IServices;
+﻿using IT_Fusion_MVC.Services.IServices;
 using IT_Fusion_MVC.Models;
 
-namespace ADVA_FrontEnd.Services
+namespace IT_Fusion_MVC.Services
 {
     public class EmployeeService : RestSharpService<Employee>,IEmployeeService
     {
